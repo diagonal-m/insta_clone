@@ -50,4 +50,10 @@ $ rails s --binding=0.0.0.0
 $ # 停止する場合はcmd + c
 ```
 
+※別タブでターミナルを開いて`redis`を起動させておく必要がある
+
+```bash
+$ redis-server
+```
+
 Webブラウザで http://localhost:3000 へアクセス
