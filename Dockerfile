@@ -9,7 +9,7 @@ ENV LC_ALL C.UTF-8
 # タイムゾーンを日本時間に変更
 ENV TZ Asia/Tokyo
 
-RUN apt-get update && apt-get install -y nodejs npm mariadb-client shared-mime-info
+RUN apt-get update && apt-get install -y nodejs npm mariadb-client shared-mime-info redis-server ImageMagick
 
 RUN gem install rails -v "5.2.6"
 
