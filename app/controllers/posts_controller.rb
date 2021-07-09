@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :require_login, only: %i[new create edit update destroy]
   def index
+    # includes: モデルの情報取得時の性能低下を防ぐために、関連づけられているモデルをあらかじめ取得しておくこと
     @posts = Post.all.includes(:user).order(created_at: :desc)
   end
 

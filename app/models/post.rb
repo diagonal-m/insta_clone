@@ -19,7 +19,10 @@
 #
 class Post < ApplicationRecord
   belongs_to :user
+  # mount_uploader: carrierwave用に作ったカラム名, carrierwaveの設定ファイルのクラス名
+  # → モデルに紐づけることができる
   mount_uploaders :images, PostImageUploader
+  # JSON にシリアライズして１カラムに保存
   serialize :images, JSON
 
   validates :images, presence: true
