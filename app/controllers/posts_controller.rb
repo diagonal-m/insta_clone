@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   def index
     # includes: モデルの情報取得時の性能低下を防ぐために、関連づけられているモデルをあらかじめ取得しておくこと
     @posts = Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
-    @ramdom_users = User.random(5)
+    @random_users = User.randoms(5)
   end
 
   def new
