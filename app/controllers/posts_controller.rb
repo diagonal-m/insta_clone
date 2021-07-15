@@ -2,8 +2,14 @@ class PostsController < ApplicationController
   before_action :require_login, only: %i[new create edit update destroy]
   def index
     # includes: モデルの情報取得時の性能低下を防ぐために、関連づけられているモデルをあらかじめ取得しておくこと
-    @posts = Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
-    @random_users = User.randoms(5)
+    @posts = 
+    if current_user
+      current_user.feed.includes(:user).page(params[:page]).order(created_at: :desc)
+    else
+      Post.all.includes(:user).page(params[:page]).order(created_at: :desc)
+    end
+
+    @users = User.recent(5)
   end
 
   def new

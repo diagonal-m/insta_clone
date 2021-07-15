@@ -1,7 +1,11 @@
 .container
   .row
     .col-md-8.col-12
-      = render @posts
+      - if @posts.present?
+        = render @posts
+      - else
+        .text-center.font-weight-bold
+          | 投稿がありません
       = paginate @posts
     .col-md-4.col-12
       - if logged_in?
@@ -13,6 +17,6 @@
           .card-header
             | ユーザー
           .card-body
-            = render @random_users
+            = render @users
           .card-footer
             = link_to 'すべて見る', users_path

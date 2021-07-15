@@ -41,7 +41,7 @@ class User < ApplicationRecord
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  scope :randoms, -> (count) { order("RAND()").limit(count) }
+  scope :recent, ->(count) { order(created_at: :desc).limit(count) }
 
   def own?(object)
     id == object.user_id
@@ -60,14 +60,18 @@ class User < ApplicationRecord
   end
 
   def follow(other_user)
-    active_relationships.create(followed_id: other_user.id)
+    following << other_user
   end
 
   def unfollow(other_user)
-    active_relationships.find_by(followed_id: other_user.id).destroy
+    following.destroy(other_user)
   end
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def feed
+    Post.where(user_id: following_ids << id)
   end
 end
