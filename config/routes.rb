@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   # e.g.) shallow: false → post_comment  GET  /posts/:post_id/comments/:id(.:format)  comments#show
   #       shallow: true  → comment       GET  /comments/:id(.:format)                 comments#show
   resources :posts, shallow: true do
+    collection do
+      get :search
+    end
     resources :comments
   end
   resources :likes, only: %i[create destroy]
