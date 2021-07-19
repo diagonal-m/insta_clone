@@ -18,6 +18,8 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!  # Userモデルで必要なクラスメソッドとインスタンスメソッドが得られる
 
+  mount_uploader :avatar, AvatarUploader
+
   validates :username, uniqueness: true, presence: true
   validates :email, uniqueness: true
   # バリデーションの実行直前に呼び出されるメソッド名をシンボルで:ifや:unlessオプションに指定できる。
