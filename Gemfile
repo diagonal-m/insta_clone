@@ -54,6 +54,7 @@ group :development do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'html2slim'
+  gem 'letter_opener_web'
 end
 
 group :test do
