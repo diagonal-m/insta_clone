@@ -1,6 +1,6 @@
 Sidekiq.configure_server do |config|
   config.redis = {
-      urll: 'redis://localhost:6379'
+      url: 'redis://localhost:6379'
   }
 end
 
