@@ -24,7 +24,7 @@ class User < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   validates :username, uniqueness: true, presence: true
-  validates :email, uniqueness: true
+  validates :email, uniqueness: true, presence: true
   # バリデーションの実行直前に呼び出されるメソッド名をシンボルで:ifや:unlessオプションに指定できる。
   # new_record?メソッド: インスタンスが新規に作成されるものかどうかを判定
   # if: -> { new_record? || changes[:crypted_password] }
